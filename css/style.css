@@ -44,6 +44,9 @@ table {
 *,*::before,*::after{
     box-sizing: border-box;
 }
+h1{
+    font-family: 'Roboto Mono', monospace;
+}
 .space{
     width: 12px;
     height: 12px;
@@ -53,14 +56,55 @@ table {
     float: left;
 }
 .fruit{
+    background-color: #EAC435;
+}
+.snake1{
+    background-color: #212922;
+}
+.snake2{
+    background-color: #294936;
+}
+.snake3{
+    background-color: #3E6259;
+}
+.snake4{
     background-color: #5B8266;
 }
-.snake{
-    background-color: #212922;
+.snake5{
+    background-color: #464E47;
+}
+.snake6{
+    background-color: #644536;
 }
 .board{
     width: 480px;
     height: 480px;
     padding: 0;
-    margin: 20px auto;
+	margin: 20px auto;
+	text-align: center;
 }
+.msg{
+	width: 480px;
+    height: 480px;
+    padding: 0;
+	margin: 20px auto;
+	text-align: center;
+}
+.again{
+	display: inline-block;
+	vertical-align: middle;
+	padding:10px;	
+}
+.again:hover{
+	color:white;
+	background-color: black;
+}
+body{
+	text-align: center;
+	margin:30px auto;
+}
+h1{
+	font-size: 42px;
+}
+
+

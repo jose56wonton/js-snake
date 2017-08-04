@@ -6,7 +6,10 @@ function start_new_game(){
     fruit = [20,30];
     direction = 2;
     print_current_board();
-    interval = setInterval(the_loop,200);
+    if (interval) {
+        clearInterval(interval);
+    }
+    interval = setInterval(the_loop,150);
 }
 
 function print_current_board(){
@@ -20,7 +23,33 @@ function print_current_board(){
     $(".r"+fruit[0]+".c"+fruit[1]).addClass("fruit");
     
     for(var k = 0; k < snake.length; k++ ){
-        $(".r"+snake[k][0]+".c"+snake[k][1]).addClass("snake");
+        var num = Math.floor(Math.random()*6+1);
+        var color;
+        switch(num){
+            case 1:
+                color = "snake1";
+                break;
+            case 2:
+                color = "snake2";
+                break;
+            case 3:
+                color = "snake3";
+                break;
+            case 4:
+                color = "snake4";
+                break;
+            case 5:
+                color = "snake5";
+                break;
+            case 6:
+                color = "snake6";
+                break; 
+            default:
+                color = "snake1";               
+        }
+        
+
+        $(".r"+snake[k][0]+".c"+snake[k][1]).addClass(color);
     } 
 }
 function generate_fruit(){
@@ -105,16 +134,20 @@ function found_fruit(){
     }
     return false;
 }
+
 function the_loop(){
     if(hit_wall()){
+        alert("Youch.. that's the wall");
         clearInterval(interval);
-        alert("you hit the wall");
-    }else if(hit_snake()){        
+        start_new_game();
+    }else if(hit_snake()){    
+        alert("You ate yourself! Yikes..");
         clearInterval(interval);
-        alert("you hit the snake");
+        start_new_game();
     }else if(victory()){
+        alert("You killed it man! Good Job 8)");
         clearInterval(interval);
-        alert("victory");    
+        start_new_game();
     }else if(found_fruit()){
         snake.unshift([fruit[0],fruit[1]]);
         fruit = generate_fruit();
@@ -124,6 +157,8 @@ function the_loop(){
         print_current_board();
     }   
 }
+$(".again").click(start_new_game());
+
 $(document).keydown(function(e){
     switch(e.which) {
         case 37: // left
